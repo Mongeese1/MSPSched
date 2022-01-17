@@ -1,4 +1,5 @@
 package crs;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -11,7 +12,7 @@ public class Course {
     public int period;
     public String timeblock;
 
-    public Course(String code, String name, String discipline, int period, String timeblock ) {
+    public Course(String code, String name, String discipline, int period, String timeblock) {
         this.code = code;
         this.name = name;
         this.discipline = discipline;
@@ -26,5 +27,6 @@ public class Course {
     public void addCoreq(String code) {
         coreqs.add(code);
     }
-    
 }
+
+
