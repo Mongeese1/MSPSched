@@ -11,13 +11,15 @@ public class Course {
     public String discipline;
     public int period;
     public String timeblock;
+    public int frequency;
 
-    public Course(String code, String name, String discipline, int period, String timeblock) {
+    public Course(String code, String name, String discipline, int period, String timeblock, int frequency) {
         this.code = code;
         this.name = name;
         this.discipline = discipline;
         this.period = period;
         this.timeblock = timeblock;
+        this.frequency = frequency;
     }
 
     public void addPrereq(String code) {
