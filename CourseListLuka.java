@@ -149,5 +149,100 @@ public class CourseList {
         C = new Course("PHY2001", "Classical Mech", "Physics", 5, "EH");
         C.addPrereq("MAT2006");
         courselist.add(C);
+        C = new Course("INT1003", "Introduction to Biomedical Engineering", "Interdisciplinary",4, "AG",1);
+        courselist.add(C);
+
+        C = new Course("INT1005", "Commercializing Science and Technology", "Interdisciplinary",5, "XX",1);
+        courselist.add(C);
+
+        C = new Course("INT1006", "Sustainable Development", "Interdisciplinary",2, "AG",1);
+        courselist.add(C);
+
+        C = new Course("INT2007", "Science in Action", "Interdisciplinary",2, "BG",1);
+        courselist.add(C);
+
+        C = new Course("INT2008", "Molecular Toxicology", "Interdisciplinary",4, "AG",1);
+        courselist.add(C);
+
+        C = new Course("INT2009", "Biophysics", "Interdisciplinary",4, "DH",1);
+        courselist.add(C);
+
+        C = new Course("INT2010", "Principle of Mass Spectrometry", "Interdisciplinary",4, "CH",1);
+        courselist.add(C);
+
+        C = new Course("INT3001", "The Philosophy of Technology", "Interdisciplinary",1, "BG",1);
+        courselist.add(C);
+
+        C = new Course("INT3002", "Advanced Microscopy: Theory and Applications", "Interdisciplinary",5, "XX",1);
+        courselist.add(C);
+
+        C = new Course("INT3003", "Biomaterials", "Interdisciplinary",4, "DH",1);
+        courselist.add(C);
+
+        C = new Course("INT3005", "Biobased Materials and Technology", "Interdisciplinary",2, "BG",1);
+        courselist.add(C);
+
+        C = new Course("INT3007", "Systems Biology", "Interdisciplinary",2, "AG",1);
+        courselist.add(C);
+
+        C = new Course("INT3008", "Regenerative Medecine", "Interdisciplinary",4, "EH",1);
+        courselist.add(C);
+
+        C = new Course("INT3009", "Chemical Ecology", "Interdisciplinary",2, "XX",2);
+        courselist.add(C);
+
+        C = new Course("INT3010", "Science and the Visual Arts", "Interdisciplinary",4, "AG",1);
+        courselist.add(C);
+        C = new Course("BIO2001","Cell Biology", "Biology", 1,"AG",1);
+        courselist.add(C);
+        C = new Course("BIO2001","Cell Biology", "Biology", 4,"EH",1);
+        courselist.add(C);//double appearance in schedule
+
+        C = new Course("BIO2002","Ecology", "Biology", 5,"XX",1);
+        courselist.add(C);
+
+        C = new Course("BIO2003","General Botany", "Biology", 4,"AG",1);
+        courselist.add(C);
+
+        C = new Course("BIO2004","General Zoology", "Biology", 1,"BG",1);
+        courselist.add(C);
+
+        C = new Course("BIO2005","Evolutionary Biology", "Biology", 4,"BG",1);
+        courselist.add(C);
+
+        C = new Course("BIO2007","Genetics", "Biology", 1,"CH",1);
+        courselist.add(C);
+        C = new Course("BIO2007","Genetics", "Biology", 4,"CH",1);
+        courselist.add(C);//double appearance in schedule
+
+        C = new Course("BIO2008","Great Transformations in Vertebrate Evolution", "Biology", 2,"EH",1);
+        courselist.add(C);
+
+        C = new Course("BIO2010","Human Anatomy and Physiology", "Biology", 4,"BG",1);
+        courselist.add(C);
+
+        C = new Course("BIO3001","Molecular Biology", "Biology", 2,"CH",1);
+        courselist.add(C);
+        C = new Course("BIO3001","Molecular Biology", "Biology", 5,"XX",1);
+        courselist.add(C);//double appearance in schedule
+
+        C = new Course("BIO3002","Ecophysiology", "Biology", 2,"EH",2);
+        courselist.add(C);
+
+        C = new Course("BIO3003","Microbiology", "Biology", 5,"XX",1);
+        courselist.add(C);
+
+        C = new Course("BIO3004","Animal Behavior", "Biology", 5,"XX",1);
+        courselist.add(C);
+
+        C = new Course("BIO3007","Tropical Ecology", "Biology", 2,"DH",1);
+        courselist.add(C);
+
+        C = new Course("BIO3008","Hominin Paleontology", "Biology", 5,"XX",1);
+        courselist.add(C);
+
+        C = new Course("BIO3010","Genomics and Proteomics", "Biology", 4,"EH",1);
+        courselist.add(C);
+
     }
 }
