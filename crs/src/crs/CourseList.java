@@ -310,5 +310,30 @@ public class CourseList {
         C.addPrereq("MAT2004");//OR
         C.addPrereq("MAT2006");
         courselist.add(C);
+
+        //---UCM--------------------------------------------------------------------------------------------------------
+
+        C = new Course("SCI2031", "Immunology", "UCM", 5, "BG", 1);
+        courselist.add(C);
+
+        C = new Course("SCI3005", "Metabolism, Nutrition and Exercise", "UCM", 2, "BG", 1);
+        C.addPrereq("CHE2006");
+        courselist.add(C);
+
+        C = new Course("SCI3007", "Endocrinology", "UCM", 1, "DH", 1);
+        C.addPrereq("BIO2010");
+        courselist.add(C);
+
+        C = new Course("SCI3050", "Advances in Biomedical Sciences", "UCM", 2, "CH", 1);
+        C.addPrereq("CHE2001"); //OR
+        C.addPrereq("BIO2001");
+        courselist.add(C);
+
+        C = new Course("HUM2022", "Digital Media", "UCM", 2, "BG", 1);
+        courselist.add(C);
+
+        C = new Course("HUM2051","Philosophical Ethics", "UCM", 4, "AG", 1);
+        courselist.add(C);
+
     }
 }
