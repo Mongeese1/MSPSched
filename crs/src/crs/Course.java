@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 public class Course {
 
-    public String code;
-    public String name;
-    ArrayList <String> prereqs = new ArrayList<>();
-    ArrayList <String> coreqs = new ArrayList<>();
-    public String discipline;
-    public int period;
-    public String timeblock;
-    public int frequency;
+    public final String code;
+    public final String name;
+    private final ArrayList <String> prereqs = new ArrayList<>();
+    private final ArrayList <String> coreqs = new ArrayList<>();
+    public final String discipline;
+    public final int period;
+    public final String timeblock;
+    public final int frequency;
+    private boolean selected;
 
     public Course(String code, String name, String discipline, int period, String timeblock, int frequency) {
         this.code = code;
@@ -20,6 +21,7 @@ public class Course {
         this.period = period;
         this.timeblock = timeblock;
         this.frequency = frequency;
+        this.selected = false;
     }
 
     public void addPrereq(String code) {
@@ -29,6 +31,23 @@ public class Course {
     public void addCoreq(String code) {
         coreqs.add(code);
     }
+
+    public void select() {
+        this.selected = true;
+    }
+
+    public void deselect() {
+        this.selected = false;
+    }
+
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    public ArrayList<String> getPrereqs() {
+        return prereqs;
+    }
+
 }
 
 

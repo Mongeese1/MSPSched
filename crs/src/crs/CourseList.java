@@ -3,8 +3,10 @@ package crs;
 import java.util.ArrayList;
 
 public class CourseList {
-    public static void main(String[] args) {
-        ArrayList <Course> courselist = new ArrayList<>();
+
+    ArrayList <Course> courselist = new ArrayList<>();
+
+    public CourseList() {
         Course C;
 
         //---BIOLOGY----------------------------------------------------------------------------------------------------
@@ -334,6 +336,84 @@ public class CourseList {
 
         C = new Course("HUM2051","Philosophical Ethics", "UCM", 4, "AG", 1);
         courselist.add(C);
+    }
+
+    public void select(String code) {
+        for (int i=0; i<courselist.size(); i++) {
+            if (code.equals(courselist.get(i).code)) {
+                courselist.get(i).select();
+            }
+        }
+    }
+
+    public void deselect(String code) {
+        for (int i=0; i<courselist.size(); i++) {
+            if (code.equals(courselist.get(i).code)) {
+                courselist.get(i).deselect();
+            }
+        }
+    }
+
+    public ArrayList<Course> getSelected() {
+        ArrayList <Course> selectedlist = new ArrayList();
+        for( Course C : courselist) {
+            if (C.isSelected()) {
+                selectedlist.add(C);
+            }
+        }
+        return selectedlist;
+    }
+
+    public ArrayList<Course> getAll() {
+        return courselist;
+    }
+
+    private boolean isSelected(String code) {
+        for(Course C : getSelected()) {
+            if (code.equals(C.code)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkMAT() {
+        for( Course C : getSelected()) {
+            if (C.discipline.equals("Math")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkPRE() {
+        for( Course C : getSelected()) {
+            for(String S : C.getPrereqs()) {
+                if (!isSelected(S)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean checkSelected() {
+        //MAT
+        //LAS
+        //PRE
+        //CO
+        //amount
+        if (!checkPRE()){
+            return false;
+        }
+
+        if (!checkMAT()){
+            return false;
+        }
+        return true;
+    }
+
+    public void generateSchedule() {
 
     }
 }
