@@ -363,6 +363,7 @@ public class CourseList {
         }
         return selectedlist;
     }
+    //check needs to be added for CHE2001, BIO2001 and BIO2007
 
     public ArrayList<Course> getAll() {
         return courselist;
@@ -386,6 +387,15 @@ public class CourseList {
         return false;
     }
 
+    private boolean checkLAS() {
+        for( Course C : getSelected()) {
+            if (C.code.equals("HUM2051") || C.code.equals("INT3001") || C.code.equals("INT2007")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean checkPRE() {
         for( Course C : getSelected()) {
             for(String S : C.getPrereqs()) {
@@ -397,12 +407,52 @@ public class CourseList {
         return true;
     }
 
+    private boolean checkCO() {
+        for(Course C : getSelected()) {
+            for(String S : C.getCoreqs()) {
+                if (!isSelected(S)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean checkAmount() {
+        if(getSelected().size()==16) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkHigh() {
+        int num = 0;
+        for(Course C : getSelected()) {
+            if (C.code.charAt(3)=='3') {
+                num++;
+            }
+        }
+        if(num>=4) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean checkLow() {
+        int num = 0;
+        for(Course C : getSelected()) {
+            if (C.code.charAt(3)=='1') {
+                num++;
+            }
+        }
+        if(num<=4) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean checkSelected() {
-        //MAT
-        //LAS
-        //PRE
-        //CO
-        //amount
         if (!checkPRE()){
             return false;
         }
@@ -410,6 +460,27 @@ public class CourseList {
         if (!checkMAT()){
             return false;
         }
+
+        if (!checkLAS()){
+            return false;
+        }
+
+        if (!checkCO()){
+            return false;
+        }
+
+        if (!checkAmount()){
+            return false;
+        }
+
+        if (!checkHigh()){
+            return false;
+        }
+
+        if (!checkLow()){
+            return false;
+        }
+
         return true;
     }
 
