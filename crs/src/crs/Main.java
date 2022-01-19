@@ -1,14 +1,16 @@
 package crs;
+import crs.CourseList;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import CourseList.courslist;
+
 
 public class Main implements ActionListener, ItemListener {
     private JFrame frame;
+    CourseList courselist = new CourseList();
 
     public void actionPerformed(ActionEvent e){
 
@@ -31,21 +33,46 @@ public class Main implements ActionListener, ItemListener {
 
         if (source.getText().contains("BIO")){
             //brows through course list loop through course list compare name with button
-            for(Course C : testlist) {
-                if (C.code.equals(source.getText())){
-                    select(C.code);
+            for(Course C : courselist.courselist) {
+                if (C.code.equals(source.getText())) {
+                    C.select();
                 }
             }
 
         }else if (source.getText().contains("CHE")){
+            for(Course C: courselist.courselist){
+                if(C.code.equals(source.getText())){
+                    C.select();
+                }
+            }
 
         }else if (source.getText().contains("MAT")){
+            for(Course C: courselist.courselist){
+                if(C.code.equals(source.getText())){
+                    C.select();
+                }
+            }
 
         }else if (source.getText().contains("PHY")){
+            for(Course C: courselist.courselist){
+                if(C.code.equals(source.getText())){
+                    C.select();
+                }
+            }
 
         }else if (source.getText().contains("NEU")){
+            for(Course C: courselist.courselist){
+                if(C.code.equals(source.getText())){
+                    C.select();
+                }
+            }
 
         }else if (source.getText().contains("INT")){
+            for(Course C: courselist.courselist){
+                if(C.code.equals(source.getText())){
+                    C.select();
+                }
+            }
 
         }
 
@@ -80,26 +107,26 @@ public class Main implements ActionListener, ItemListener {
         this.frame.setTitle(title);
     }
 
-    void createGUI(){
+    void createGUI() {
         this.frame = new JFrame();
         setTitle();
 
         JMenuBar menuBar = new Menu()
-                this.frame.setJMenuBar(menuBar);
+        this.frame.setJMenuBar(menuBar);
 
         int menuHeight = 48;
         int sx = 800;
         int sy = 800;
-        this.frame.setSize(800,848);
+        this.frame.setSize(800, 848);
 
         this.frame.setLocationRelativeTo(null);
         this.frame.setDefaultCloseOperation(3);
         this.frame.setVisible(true);
+        }
 
         public static void main(String[] args){
 
-            app.createGUI();
+            createGUI();
         }
     }
 
-}
