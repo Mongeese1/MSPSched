@@ -23,7 +23,8 @@ public class CurrentChoices {
         testlist.select("INT3010");
         testlist.select("INT1003");
         testlist.select("INT1006");
-        testlist.select("INT1005");
+        //testlist.select("INT1005");
+        testlist.select("CHE2001");
         testlist.select("CHE3007");
         System.out.println(testlist.getSelected().size());
         if (testlist.checkSelected()) {

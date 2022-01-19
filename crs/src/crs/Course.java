@@ -13,6 +13,8 @@ public class Course {
     public final String timeblock;
     public final int frequency;
     private boolean selected;
+    public int periodtwo;
+    public String timeblocktwo;
 
     public Course(String code, String name, String discipline, int period, String timeblock, int frequency) {
         this.code = code;
@@ -22,6 +24,8 @@ public class Course {
         this.timeblock = timeblock;
         this.frequency = frequency;
         this.selected = false;
+        this.periodtwo = 0;
+        this.timeblocktwo = "XX";
     }
 
     public void addPrereq(String code) {
@@ -30,6 +34,11 @@ public class Course {
 
     public void addCoreq(String code) {
         coreqs.add(code);
+    } //redundant
+
+    public void addPeriodTwo(int period, String timeblock) {
+        this.periodtwo = period;
+        this.timeblocktwo = timeblock;
     }
 
     public void select() {
@@ -48,6 +57,9 @@ public class Course {
         return prereqs;
     }
 
+    public ArrayList<String> getCoreqs() {
+        return coreqs;
+    }
 }
 
 

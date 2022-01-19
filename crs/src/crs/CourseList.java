@@ -12,9 +12,8 @@ public class CourseList {
         //---BIOLOGY----------------------------------------------------------------------------------------------------
 
         C = new Course("BIO2001","Cell Biology", "Biology", 1,"AG",1);
+        C.addPeriodTwo(4,"EH");
         courselist.add(C);
-        C = new Course("BIO2001","Cell Biology", "Biology", 4,"EH",1);
-        courselist.add(C);//double appearance in schedule
 
         C = new Course("BIO2002","Ecology", "Biology", 5,"CH",1);
         courselist.add(C);
@@ -30,10 +29,8 @@ public class CourseList {
 
         C = new Course("BIO2007","Genetics", "Biology", 1,"CH",1);
         C.addPrereq("BIO2001");
+        C.addPeriodTwo(4, "CH");
         courselist.add(C);
-        C = new Course("BIO2007","Genetics", "Biology", 4,"CH",1);
-        C.addPrereq("BIO2001");
-        courselist.add(C);//double appearance in schedule
 
         C = new Course("BIO2008","Great Transformations in Vertebrate Evolution", "Biology", 2,"EH",1);
         C.addPrereq("BIO2004"); //OR
@@ -82,9 +79,8 @@ public class CourseList {
         //---CHEMISTRY--------------------------------------------------------------------------------------------------
 
         C = new Course("CHE2001", "Organic Chemistry", "Chemistry", 1, "EH",1);
+        C.addPeriodTwo(4, "AG");
         courselist.add(C);
-        C = new Course("CHE2001", "Organic Chemistry", "Chemistry", 4, "AG",1);
-        courselist.add(C); //double appearance in schedule
 
         C = new Course("CHE2002", "Inorganic Chemistry", "Chemistry", 1, "BG",1);
         courselist.add(C);
