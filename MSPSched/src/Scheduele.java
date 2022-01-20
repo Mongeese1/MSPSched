@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -35,10 +37,28 @@ public class Scheduele {
         if (testlist.checkSelected()) {
             System.out.println("Hooray!");
         
-       }
+        
+//        for(Set<Course> C: comb) {
+//        	Predicate<? super Course> card = C;
+//        	C.removeIf((card));
+////        	if(!(C.size()==2)) {
+        		
+        	
+        }
+       List<Course> sched1 = new ArrayList<Course>();
+       List<Course> scheduele = loop(sched1, testlist, 0);
+       System.out.println(scheduele.size());
+//        System.out.println(powerset(testlist).size());
+//        Set<Set<Course>> comb =powerset(testlist);
+//        Object[] arr = comb.toArray();
+//        for(int i=0;i<45;i++) {
+//        	System.out.println(comb.)
+//        }
+	}
+       
        
         
-	}
+	
 public static Set<Set<Course>> powerset(CourseList list){
 			List<Course> set1 = list.getSelected();
 			int n = set1.size();
@@ -61,9 +81,35 @@ public static Set<Set<Course>> powerset(CourseList list){
 //					ArrayList<ArrayList<Course>> temp = new ArrayList<ArrayList<Course>>();
 //					temp.add(i, set2);
 //				}
+}
+public static List<Course> loop (List<Course> sched,CourseList list, int n) {
+	List<Course> sched1 = list.getSelected();
+	if(n==16) {
+		if(!(((CourseList) sched1).checkSelected())) {
+			for(Course C: list.getSelected()) {
+				((CourseList) sched1).select(C.code);
+				//this is where we write to a txt
 			}
+			return sched1;//put something here to break loop
 			
+		}
+		else {
+			for(Course C: list.getSelected()) {
+				sched1.add(n, C);
+				loop(sched1,list,n+1);
+				
+			}
+		}
+		
+	}
+	return sched1;
+}
+}
+
+
 			
+
+		
 				
 			
 			
@@ -74,7 +120,7 @@ public static Set<Set<Course>> powerset(CourseList list){
 			
 			
 			
-		}
+		
 	
 
 
