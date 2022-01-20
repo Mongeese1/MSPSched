@@ -1,4 +1,4 @@
-import crs.Course;
+/*import crs.Course;
 import crs.CourseList;
 
 import java.util.ArrayList;
@@ -31,4 +31,4 @@ public class CurrentChoices {
             System.out.println("Hooray!");
         }
     }
-}
+}*/

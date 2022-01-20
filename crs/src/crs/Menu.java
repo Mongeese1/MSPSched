@@ -8,9 +8,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 
-    public class Menu extends JMenuBar implements ActionListener, ItemListener {
+public class Menu extends JMenuBar implements ActionListener, ItemListener {
 
         private Component frame;
+    CourseList courselist = new CourseList();
 
         public JMenuBar createMenuBar(){
 
@@ -588,61 +589,85 @@ import java.awt.event.ItemListener;
         @Override
         public void itemStateChanged(ItemEvent e) {
             JMenuItem source = (JMenuItem)e.getSource();
-            CourseList courselist = new CourseList();
+
 
             if (source.getText().contains("BIO")){
                 for(Course C : courselist.courselist) {
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("CHE")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("MAT")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("PHY")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("NEU")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("INT")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("SCI")){
                 for(Course C: courselist.courselist){
-                    if (source.getText().contains(C.code)) {
-                        C.select();
+                    if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
+                            C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
 
             }else if (source.getText().contains("HUM")){
                 for(Course C: courselist.courselist){
                     if(source.getText().contains(C.code)){
+                        if(!courselist.isSelected(C.code)){
                         C.select();
+                        }else {C.deselect();}
+                        System.out.println(courselist.getSelected().size());
                     }
                 }
             }

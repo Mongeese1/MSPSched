@@ -365,7 +365,7 @@ public class CourseList {
         return courselist;
     }
 
-    private boolean isSelected(String code) {
+    public boolean isSelected(String code) {
         for(Course C : getSelected()) {
             if (code.equals(C.code)) {
                 return true;

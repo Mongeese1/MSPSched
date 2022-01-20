@@ -5,10 +5,10 @@ import java.awt.*;
 
 
 public class Main{
-    private static JFrame frame; //look into this with group
-    /*CourseList courselist = new CourseList();
 
-    public void actionPerformed(ActionEvent e){
+    private static JFrame frame; //look into this with group
+
+     /*public void actionPerformed(ActionEvent e){
 
         JMenuItem source = (JMenuItem)e.getSource();
 
@@ -112,22 +112,32 @@ public class Main{
         }
 
 
-    static void createGui(){
+    Menu menu = new Menu();
+    static void createGui(Menu menu){
+
         JFrame frame = new JFrame("MSP Frame Schedule Planner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Menu menu = new Menu();
 
         frame.setJMenuBar(menu.createMenuBar());
+
+
+
+
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setOpaque(true);
 
+
         frame.setSize(300,300);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     public static void main(String[] args){
+        Main main = new Main();
+        //System.out.println(main.menu.courselist.getSelected().size());
 
-        javax.swing.SwingUtilities.invokeLater(() -> createGui());
+
+        javax.swing.SwingUtilities.invokeLater(() -> createGui(main.menu));
     }
 }
 
