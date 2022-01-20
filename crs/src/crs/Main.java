@@ -109,7 +109,7 @@ public class Main{
                 "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 "Explanation",
                 -1);
-        }
+    }
 
 
     Menu menu = new Menu();
@@ -140,6 +140,7 @@ public class Main{
         javax.swing.SwingUtilities.invokeLater(() -> createGui(main.menu));
     }
 }
+
 
 
 

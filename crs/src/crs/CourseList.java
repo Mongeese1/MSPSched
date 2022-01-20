@@ -335,17 +335,17 @@ public class CourseList {
     }
 
     public void select(String code) {
-        for (int i=0; i<courselist.size(); i++) {
-            if (code.equals(courselist.get(i).code)) {
-                courselist.get(i).select();
+        for (Course C : courselist) {
+            if (code.equals(C.code)) {
+                C.select();
             }
         }
     }
 
     public void deselect(String code) {
-        for (int i=0; i<courselist.size(); i++) {
-            if (code.equals(courselist.get(i).code)) {
-                courselist.get(i).deselect();
+        for ( Course C : courselist ) {
+            if (code.equals(C.code)) {
+                C.deselect();
             }
         }
     }
@@ -478,6 +478,18 @@ public class CourseList {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Courses selected:");
+        str.append("\n");
+        for (Course C : getSelected()) {
+            str.append(C.code + ": " + C.name);
+            str.append("\n");
+        }
+        return str.toString();
     }
 
     public void generateSchedule() {
