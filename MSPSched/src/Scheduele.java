@@ -36,20 +36,23 @@ public class Scheduele {
             System.out.println("Hooray!");
         
        }
-        ArrayList<ArrayList<Course>> comb1 = new ArrayList<ArrayList<Course>>();
+       
         
 	}
-public static void helper(CourseList list){
-			ArrayList<Course> set1 = list.getSelected();
-			ArrayList<ArrayList<Course>> comb = new ArrayList<ArrayList<Course>>();
-			int[] ind = new int[2];
-			for (int i=0;i<8;i++) {
-				ind[i]=i;
+public static Set<Set<Course>> powerset(CourseList list){
+			List<Course> set1 = list.getSelected();
+			int n = set1.size();
+			Set<Set<Course>> powerset = new HashSet<Set<Course>>();
+			for(long i=0;i<(1<<n);i++) {
+				Set<Course> element = new HashSet<Course>();
+				for (int j=0;j<n;j++) {
+					if((i>>j)%2==1) element.add(set1.get(j));
+					powerset.add(element);
+				}
+			
 			}
-			int i=0;
-			while (i<8) {
-				comb.get(0).add(null)
-			}
+			return powerset;
+			
 			
 				
 			
