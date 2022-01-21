@@ -110,7 +110,12 @@ public class Main{
                 "Explanation",
                 -1);
     }
-
+    
+    public void showInfo(Graphics2D g2d){
+        g2d.setPaint(new Color (0,0,0));
+        int cChosen = courselist.getSelected().size();
+        g2d.drawString("Number of selected courses " + cChosen,10,10);
+    }
 
     Menu menu = new Menu();
     static void createGui(Menu menu){
