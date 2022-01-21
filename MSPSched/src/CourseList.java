@@ -28,6 +28,8 @@ public class CourseList {
         C = new Course("BIO2007","Genetics", "Biology", 1,"CH",1);
         C.addPrereq("BIO2001");
         C.addPeriodTwo(4, "CH");
+        
+        
         courselist.add(C);
 
         C = new Course("BIO2008","Great Transformations in Vertebrate Evolution", "Biology", 2,"EH",1);

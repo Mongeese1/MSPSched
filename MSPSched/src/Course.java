@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Course {
 
@@ -33,6 +34,52 @@ public class Course {
     public void addCoreq(String code) {
         coreqs.add(code);
     } //redundant
+    public List<Integer> options() {
+    	List<Integer> opt =new ArrayList<Integer>();
+    	if(this.period==1||this.periodtwo ==1) {
+    		opt.add(2);
+    		opt.add(6);
+    	
+    	}
+    	if(this.period==2||this.periodtwo ==2) {
+        		opt.add(3);
+        		opt.add(8);	
+    		
+    	}
+    	if(this.period==4||this.periodtwo ==4){
+    		opt.add(0);
+    		opt.add(5);
+    		
+    }
+    	if((this.period==5||this.periodtwo==5)) {
+    		opt.add(1);
+    		opt.add(6);
+    		
+    	}
+		return opt;
+    	}
+    public List<Integer> periods(){
+    	List<Integer> periods = new ArrayList<Integer>();
+    	if(this.periodtwo==0) {
+    		periods.add(this.period);
+    	}
+    	else {
+    		periods.add(this.period);
+    		periods.add(this.periodtwo);
+    	}
+    	return periods;
+    }
+    public List<String> timeblocks(){
+    	List<String> timeblocks = new ArrayList<String>();
+    	if(this.timeblocktwo.equals("XX")) {
+    		timeblocks.add(this.timeblock);
+    	}
+    	else {
+    		timeblocks.add(this.timeblock);
+    		timeblocks.add(this.timeblocktwo);
+    	}
+    	return timeblocks;
+    }
 
     public void addPeriodTwo(int period, String timeblock) {
         this.periodtwo = period;

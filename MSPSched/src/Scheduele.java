@@ -52,6 +52,7 @@ public class Scheduele {
        List<Course> Period41 = sel.subList(0,2);
 //       List<Course> scheduele = loop(sched1, sel, 0);
        System.out.println(checkPeriod(sel));
+       Course[] sched = new Course[16];
       
        
 //        System.out.println(powerset(testlist).size());
@@ -95,6 +96,29 @@ public class Scheduele {
     	   }
 	
 	}//recursion
+	public static Course[] loop(Course[] sched1,List<Course> courses,int n) {
+		
+		if(n==16) {
+		;
+		}
+		else {
+			if(courses.get(n).options().size()>1) {
+				for(int i=0;i<courses.get(n).periods().size();i++) {
+					Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks.get(i),2);
+					for(int j:temp.options())
+					{
+						sched1[j] = temp;
+						sched1 = loop(sched1,courses,n++);
+					}
+				}
+				
+	}
+			else {
+				for(int j:courses.get(n).options()) {
+					sched1[j] = courses.get(n);
+					sched1 = loop(sched1,courses,n++);
+				}
+			}
     	   public static void loop (Course[] sched1,List<Course> courses, int n) {
     	   if(n==16) {//check
     		   
@@ -174,7 +198,7 @@ public
 
 public static boolean checkPeriod(List<Course> sched1) {
 	for (int i =0;i<8;i++) {
-		if(!(sched.get(i,0).timeblock==sched.get(i,1).timeblock)) {
+		if(!(sched1.get(i,0).timeblock==sched1.get(i,1).timeblock)) {
 			return false;
 		}
 	
