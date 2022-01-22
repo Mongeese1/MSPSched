@@ -63,10 +63,10 @@ public class Scheduele {
 //        }
 	}
 	public static Course[] loop(Course[] sched1,List<Course> courses,int n) {
-		
+		Course[] stop = new Course[0];
 		if(n==16) {
 		if(checkAll(sched1)){
-			return sched1;
+			return stop;
 			//save to text here
 		}
 		
@@ -91,7 +91,9 @@ public class Scheduele {
 					sched1 = loop(sched1,courses,n++);
 				}
 			}
+		
 		}
+		return stop;//return an empty course[] to stop the loop
 	}
 	public static boolean timeblockcheck(List<Course>sched1) {
 		for(int i = 0;i<sched1.size()-1;i+=2) {
