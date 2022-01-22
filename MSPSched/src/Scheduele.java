@@ -51,7 +51,7 @@ public class Scheduele {
        List<Course> sel = testlist.getSelected();
        List<Course> Period41 = sel.subList(0,2);
 //       List<Course> scheduele = loop(sched1, sel, 0);
-       System.out.println(checkPeriod(sel));
+//       System.out.println(checkPeriod(sel));
        Course[] sched = new Course[16];
       
        
@@ -61,50 +61,22 @@ public class Scheduele {
 //        for(int i=0;i<45;i++) {
 //        	System.out.println(comb.)
 //        }
-       for (Course C1.options:testlist.getSelected()) {
-    	   sched1.add(options,C1);
-    	   for (Course C2:testlist.getSelected()) {
-        	   sched1.add(2,C2);
-        	   for (Course C3:testlist.getSelected()) {
-            	   sched1.add(3,C3);
-            	   ///
-            	   tempcourse;
-            	  //forloop approach
-            	   if(n==16):
-            		   if check:
-            			   write   
-            	   else:
-        			   for(i,len(course[n].periods))
-        				   if len(course[n].periods>1) :
-        					   tempcourse = course(name,,,periods[i],timeblock[i])
-        				   else :
-        					   tempcourse = courses[n]
-        				   for j in tempcourse.options://where options returns the possible indexes for the scheduel
-        						   sched[j] = tempcourse
-        					   
-        						   repeat(n+1)
-        						   
-        				   
-        		   }
-        		   else 
-        			   for j in course[n].options:
-        						   sched[j] = course[n]
-        				//cont
-        							loop(sched,course, n+1)
-        							
-       }
-    	   }
-	
-	}//recursion
+	}
 	public static Course[] loop(Course[] sched1,List<Course> courses,int n) {
 		
 		if(n==16) {
-		;
+		if(checkAll(sched1)){
+			return sched1;
+			//save to text here
+		}
+		
+			
+		
 		}
 		else {
 			if(courses.get(n).options().size()>1) {
 				for(int i=0;i<courses.get(n).periods().size();i++) {
-					Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks.get(i),2);
+					Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks().get(i),2);
 					for(int j:temp.options())
 					{
 						sched1[j] = temp;
@@ -119,212 +91,62 @@ public class Scheduele {
 					sched1 = loop(sched1,courses,n++);
 				}
 			}
-    	   public static void loop (Course[] sched1,List<Course> courses, int n) {
-    	   if(n==16) {//check
-    		   
-   
-    		   if(sched1.check) {
-    			   
-    		   
-    			  solve.add(sched1);
-    		   
-    	   }}
-    		   
-    	   
-    		   course0= 1 ;
-    		   course1 = 1,4;
-//    		   course2 = 5;
-    	   else{
-    		   if len(course[n].periods>1) {
-    			   for(i,len(course[n].periods))
-    				   Course tempcourse = new course(name,,,periods[i],timeblock[i])
-    				   for j in tempcourse.options://where options returns the possible indexes for the scheduel
-    					   sched[j] = tempcourse
-    					   
-    					   sched =  loop(sched,course, n+1)
-    					  
-    				   
-    		   }
-    		   else 
-    			   for j in course[n].options:
-    						   sched[j] = course[n]
-    				//cont
-    							loop(sched,course, n+1)
-    							
-    	   
-//    		   for (int option from courses[n].option) {
-    			   
-    		   }
-    			   
-    			   
-    			   sched1[option] = Courses[n];
-//    	    	   sched1.add(n,C);
-    	    	   
-    	    	   loop(sched1,courses,n+1);
-    	    	   
-    		   }
-    		   
-    		   }
-    		}       
-       
-        
-	
-public static Set<Set<Course>> powerset(CourseList list){
-			List<Course> set1 = list.getSelected();
-			int n = set1.size();
-			Set<Set<Course>> powerset = new HashSet<Set<Course>>();
-			for(long i=0;i<(1<<n);i++) {
-				Set<Course> element = new HashSet<Course>();
-				for (int j=0;j<n;j++) {
-					if((i>>j)%2==1) element.add(set1.get(j));
-					powerset.add(element);
+		}
+	}
+	public static boolean timeblockcheck(List<Course>sched1) {
+		for(int i = 0;i<sched1.size()-1;i+=2) {
+			if(sched1.get(i).timeblocktwo.equals("XX")&&sched1.get(i+1).timeblocktwo.equals("XX")) {
+				if(sched1.get(i).timeblock.equals(sched1.get(i+1).timeblock)) {
+					return false;
 				}
 			
 			}
-			return powerset;
-			
+			else if(!(sched1.get(i).timeblocktwo.equals("XX"))||!(sched1.get(i+1).timeblocktwo.equals("XX"))) {
+				if(sched1.get(i).timeblocktwo.equals(sched1.get(i+1).timeblock)||sched1.get(i).timeblock.equals(sched1.get(i+1).timeblocktwo)){
+					return false;
+				}
+			}
+			else {
+				if(sched1.get(i).timeblocktwo.equals(sched1.get(i+1).timeblocktwo)){
+					return false;
+				}
+				
+			}
+		}
+		return true;
+		}
+	public static boolean prereqCheck(List<Course> sched1) {
+		List<String> codes = new ArrayList<String>();//we dont have a way to get a course object from getPrereqs so we have to hold course codes in an array to search for index of prereqs
+		for(int i=0;i<sched1.size();i++) {//fill the codes with the course codes
+			codes.add(sched1.get(i+1).code);}
+		for(int i=0;i<sched1.size()-1;i+=2) {//for the scheduele -1 since we are going by 2
+			//
+			for(int j=0;j<sched1.get(i).getPrereqs().size();j++) {//for each prereq
+				
+			if(codes.indexOf(sched1.get(i).getPrereqs().get(j))<sched1.indexOf(sched1.get(i))||codes.indexOf(sched1.get(i+1).getPrereqs().get(j))<sched1.indexOf(sched1.get(i+1))){//if the prereq shows up before
+				//in a period(2 courses)
+				return false;
+				
+			}}
 			
 				
-			
-			//for(int i=0;i<set1.size();i++) {
-//				for(int j=set1.size();j>0;j--) {
-//					ArrayList<ArrayList<Course>> temp = new ArrayList<ArrayList<Course>>();
-//					temp.add(i, set2);
-//				}
-}
-
-public 	
-	
-
-public static boolean checkPeriod(List<Course> sched1) {
-	for (int i =0;i<8;i++) {
-		if(!(sched1.get(i,0).timeblock==sched1.get(i,1).timeblock)) {
-			return false;
+			}
+		return true;
 		}
 	
-	}
-//	for (Course C: Period51) {
-//		if(!(C.period == 5||C.periodtwo==5)) {
-//			return false;
-//		}
-//	
-//			}
-//	for (Course C: Period12) {
-//		if(!(C.period == 1||C.periodtwo==1)) {
-//			return false;
-//}
-//		
-//		}
-//	for (Course C: Period22) {
-//		if(!(C.period == 2||C.periodtwo==2)) {
-//			return false;
-//}}
-//	for (Course C: Period42) {
-//		if(!(C.period == 4||C.periodtwo==4)) {
-//			return false;
-//		}
-//		
-//			
-//		}
-//	for (Course C: Period52) {
-//		if(!(C.period == 5||C.periodtwo==5)) {
-//			return false;
-//		}}
-//		for (Course C: Period13) {
-//			if(!(C.period == 1||C.periodtwo==1)) {
-//				return false;
-//			}}	
-//			for (Course C: Period23) {
-//				if(!(C.period == 2||C.periodtwo==2)) {
-//					return false;
-//				}}
+	public static boolean checkAll(Course[] sched1) {
+		List<Course> temp = new ArrayList<Course>();
+		for(int i=0;i<sched1.length;i++) {
+			temp.add(sched1[i]);
+		}
+		if(prereqCheck(temp)&&timeblockcheck(temp)){
 			return true;
-							
-	}
-public static boolean checkblock(List<Course> sched1) {
-//	List<String> temp = new ArrayList<String>();
-//	for(int i=0;i<16;i++) {
-//		temp.add(sched1.get(i).timeblock);
-//		
-//	}
-
-//	List<String> shittycheck = new ArrayList<String>();
-
-	List<Course> Period41 = sched1.subList(0, 2);
-	List<Course> Period51 = sched1.subList(2, 4);
-	List<Course> Period12 = sched1.subList(4, 6);
-	List<Course> Period22 = sched1.subList(6, 8);
-	List<Course> Period42 = sched1.subList(8, 10);
-	List<Course> Period52 = sched1.subList(10, 12);
-	List<Course> Period13 = sched1.subList(12, 14);
-	List<Course> Period23 = sched1.subList(14, 16);
-	
-	if(Period41.get(0).timeblocktwo.equals("XX")&&Period41.get(1).timeblocktwo.equals("XX")) {
-		if(Period41.get(0).timeblock.equals(Period41.get(1).timeblock)) {
-			return false;
-			}
-			
 		}
-	if(!(Period41.get(0).timeblocktwo.equals("XX"))||!(Period41.get(1).timeblocktwo.equals("XX"))) {
-		if(Period41.get(0).periodtwo==4) {
-			if(Period41.get(0).timeblocktwo.equals(Period41.get(1).timeblock)) {
-					return false;
-		}
-		if(Period41.get(1).periodtwo==4) {
-			if(Period41.get(1).timeblocktwo.equals(Period41.get(0).timeblock)) {
-				return false;
-			}
+		return false;
 	}
-	
-}
 	}
 
-//	
-//}
-//	if(Period51.get(0).timeblocktwo.equals("XX")&&Period51.get(1).timeblocktwo.equals("XX")) {
-//		if(Period51.get(0).timeblock.equals(Period51.get(1).timeblock)) {
-//			return false;
-//			}
-//			
-//		}
-//	if(!(Period51.get(0).timeblocktwo.equals("XX"))||!(Period51.get(1).timeblocktwo.equals("XX"))) {
-//		if(Period51.get(0).periodtwo==5) {
-//			if(Period51.get(0).timeblocktwo.equals(Period51.get(1).timeblock)) {
-//					return false;
-//		}
-//		if(Period51.get(1).periodtwo==5) {
-//			if(Period51.get(1).timeblocktwo.equals(Period51.get(0).timeblock)) {
-//				return false;
-//			}
-//	}
-//	
-//}
-//	
-//}
-//	if(Period12.get(0).timeblocktwo.equals("XX")&&Period12.get(1).timeblocktwo.equals("XX")) {
-//		if(Period12.get(0).timeblock.equals(Period12.get(1).timeblock)) {
-//			return false;
-//			}
-//			
-//		}
-//	if(!(Period12.get(0).timeblocktwo.equals("XX"))||!(Period12.get(1).timeblocktwo.equals("XX"))) {
-//		if(Period12.get(0).periodtwo==1) {
-//			if(Period12.get(0).timeblocktwo.equals(Period12.get(1).timeblock)) {
-//					return false;
-//		}
-//		if(Period41.get(1).periodtwo==1) {
-//			if(Period41.get(1).timeblocktwo.equals(Period41.get(0).timeblock)) {
-//				return false;
-//			}
-//	}
-//	
-//}
-//	
-//}
-	return true;
-}
 
-}
 		
 
 		
