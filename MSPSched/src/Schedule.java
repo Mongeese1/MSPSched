@@ -36,20 +36,17 @@ public class Schedule {
         if (testlist.checkSelected()) {
             System.out.println("Hooray!");
         }
-        List<Course> sched1 = new ArrayList<Course>();
+
         List<Course> sel = testlist.getSelected();
         Course[] sched = new Course[16];
-        Course C = new Course("CHE2001", "Organic Chemistry", "Chemistry", 1, "EH",1);
-        C.addPeriodTwo(4, "AG");
-        Course[] sched2 = new Course[16];
         if ( loop(sched,sel,0) ) {
-            // hooray 2 : we have solutions...
+            System.out.println("We have a solution");
+
         }
     }
 
     public static boolean loop(Course[] sched1,List<Course> courses,int n) {
         boolean bResult;
-
         if(n==16) {
 
             if(checkAll(sched1)){
@@ -109,7 +106,7 @@ public class Schedule {
         return newsched;
     }
 
-    public static boolean timeblockcheck(List<Course>sched1) {
+    public static boolean timeblockCheck(List<Course>sched1) {
         for(int i = 0;i<sched1.size()-1;i+=2) {
             if(sched1.get(i).timeblocktwo.equals("XX")&&sched1.get(i+1).timeblocktwo.equals("XX")) {
                 if(sched1.get(i).timeblock.equals(sched1.get(i+1).timeblock)) {
@@ -126,7 +123,6 @@ public class Schedule {
                 if(sched1.get(i).timeblocktwo.equals(sched1.get(i+1).timeblocktwo)){
                     return false;
                 }
-
             }
         }
         return true;
@@ -138,7 +134,17 @@ public class Schedule {
             codes.add(sched1.get(i).code);}
         for(int i=0;i<sched1.size()-1;i+=2) {//for the schedule -1 since we are going by 2
             for(int j=0;j<sched1.get(i).getPrereqs().size();j++) {//for each prereq
-                if(codes.indexOf(sched1.get(i).getPrereqs().get(j))<sched1.indexOf(sched1.get(i))||codes.indexOf(sched1.get(i+1).getPrereqs().get(j))<sched1.indexOf(sched1.get(i+1))){//if the prereq shows up before
+                int i1 = codes.indexOf(sched1.get(i).getPrereqs().get(j));
+                if(i1>=i){//if the prereq shows up before
+                    //in a period(2 courses)
+                    return false;
+                }
+            }
+        }
+        for(int i=1;i<sched1.size();i+=2) {//for the schedule -1 since we are going by 2
+            for(int j=0;j<sched1.get(i).getPrereqs().size();j++) {//for each prereq
+                int i1 = codes.indexOf(sched1.get(i).getPrereqs().get(j));
+                if(i1>=i-1){//if the prereq shows up before
                     //in a period(2 courses)
                     return false;
                 }
@@ -152,7 +158,7 @@ public class Schedule {
         for(int i=0;i<sched1.length;i++) {
             temp.add(sched1[i]);
         }
-        if(prereqCheck(temp)&&timeblockcheck(temp)){
+        if(prereqCheck(temp)&&timeblockCheck(temp)){
             return true;
         }
         return false;
