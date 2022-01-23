@@ -37,23 +37,32 @@ public class Course {
     public List<Integer> options() {
     	List<Integer> opt =new ArrayList<Integer>();
     	if(this.period==1||this.periodtwo ==1) {
-    		opt.add(2);
-    		opt.add(6);
+    		opt.add(4);
+    		opt.add(5);
+    		opt.add(12);
+    		opt.add(13);
+    		//[[.,.],[.,.],[.,.],[.,.],[.,.],[.,.],[.,.],
     	
     	}
     	if(this.period==2||this.periodtwo ==2) {
-        		opt.add(3);
-        		opt.add(8);	
+    		opt.add(6);
+    		opt.add(7);
+    		opt.add(14);
+    		opt.add(15);
     		
     	}
     	if(this.period==4||this.periodtwo ==4){
     		opt.add(0);
-    		opt.add(5);
+    		opt.add(1);
+    		opt.add(8);
+    		opt.add(9);
     		
     }
     	if((this.period==5||this.periodtwo==5)) {
-    		opt.add(1);
-    		opt.add(6);
+    		opt.add(2);
+    		opt.add(3);
+    		opt.add(10);
+    		opt.add(11);
     		
     	}
 		return opt;

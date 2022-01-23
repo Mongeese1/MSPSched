@@ -49,10 +49,15 @@ public class Scheduele {
         }
        List<Course> sched1 = new ArrayList<Course>();
        List<Course> sel = testlist.getSelected();
-       List<Course> Period41 = sel.subList(0,2);
+//       List<Course> Period41 = sel.subList(0,2);
 //       List<Course> scheduele = loop(sched1, sel, 0);
 //       System.out.println(checkPeriod(sel));
        Course[] sched = new Course[16];
+      Course C = new Course("CHE2001", "Organic Chemistry", "Chemistry", 1, "EH",1);
+       C.addPeriodTwo(4, "AG");
+       Course[] sched2 = new Course[16];
+       sched2 = loop(sched,sel,0);    
+//       System.out.println(C.options().size());
       
        
 //        System.out.println(powerset(testlist).size());
@@ -74,13 +79,17 @@ public class Scheduele {
 		
 		}
 		else {
-			if(courses.get(n).options().size()>1) {
+			if(courses.get(n).options().size()>4) {
 				for(int i=0;i<courses.get(n).periods().size();i++) {
+					
 					Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks().get(i),2);
+					if(courses.get(n).code.equals("BI02007")) {
+						temp.addPrereq("BIO2001");
+					}
 					for(int j:temp.options())
 					{
 						sched1[j] = temp;
-						sched1 = loop(sched1,courses,n++);
+						return loop(sched1,courses,n++);
 					}
 				}
 				
@@ -88,12 +97,12 @@ public class Scheduele {
 			else {
 				for(int j:courses.get(n).options()) {
 					sched1[j] = courses.get(n);
-					sched1 = loop(sched1,courses,n++);
+					return loop(sched1,courses,n++);
 				}
 			}
 		
 		}
-		return stop;//return an empty course[] to stop the loop
+		return loop(sched1,courses,n++);//return an empty course[] to stop the loop
 	}
 	public static boolean timeblockcheck(List<Course>sched1) {
 		for(int i = 0;i<sched1.size()-1;i+=2) {
@@ -120,7 +129,7 @@ public class Scheduele {
 	public static boolean prereqCheck(List<Course> sched1) {
 		List<String> codes = new ArrayList<String>();//we dont have a way to get a course object from getPrereqs so we have to hold course codes in an array to search for index of prereqs
 		for(int i=0;i<sched1.size();i++) {//fill the codes with the course codes
-			codes.add(sched1.get(i+1).code);}
+			codes.add(sched1.get(i).code);}
 		for(int i=0;i<sched1.size()-1;i+=2) {//for the scheduele -1 since we are going by 2
 			//
 			for(int j=0;j<sched1.get(i).getPrereqs().size();j++) {//for each prereq
@@ -146,6 +155,7 @@ public class Scheduele {
 		}
 		return false;
 	}
+	
 	}
 
 
