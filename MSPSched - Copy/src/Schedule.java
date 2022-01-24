@@ -38,8 +38,8 @@ public class Schedule {
         }
 
         List<Course> sel = testlist.getSelected();
-        Course[] sched = new Course[16];
-        if ( loop(sched,sel,0) ) {
+        Course[] sched = new Course[16];//create an empty schedule array to be filled
+        if ( loop(sched,sel,0) ) {//if solution
             System.out.println("We have a solution");
 
         }
@@ -47,10 +47,21 @@ public class Schedule {
         	System.out.println("Selected courses do not fit within a schedule");
         	
         }
-    }
+    }/*
+    writeToTxt
+    input List of course arraylists
+    return void
+    method to write course names to text files
+    */
     public static void writeToTxt(ArrayList<ArrayList<String>> courses) {
     	
     }
+    /*
+     * helper
+     * input list of course arraylists
+     * return list of course names
+     * helper function return list of course names so they can be written to a text file and a student can see their schedule
+     */
     public static List<String> helper(ArrayList<ArrayList<Course>> solutions){
     	List<String> toTxt = new ArrayList<String>();
     	for(ArrayList<Course> A: solutions) {
@@ -61,33 +72,41 @@ public class Schedule {
     	}
     	return toTxt;
     }
-
+/*
+ * loop
+ * input sched1: empty course array to be filled
+ * input courses: arraylist of selected course objects 
+ * input n: set to 0 when calling, used to recur function
+ * return boolean: return true if a valid schedule is found, else recur
+ * recursive method to fill an empty course array within the constraints specified by the MSP timetable, adds the results to a arraylist of possible solutions
+ */
     public static boolean loop(Course[] sched1,List<Course> courses,int n) {
         boolean bResult;
         if(n==16) {
 
-            if(checkAll(sched1)){
+            if(checkAll(sched1)){//if the schedule passes the prereq & timeblock check
                 bResult = true;
                 solutions.add (ListCopy(sched1));
             }
-            else {
+            else {//else
                 bResult = false;
             }
         }
         else {
             bResult = false;
-            if(courses.get(n).options().size()>4) {
-                for(int i=0;i<courses.get(n).periods().size();i++) {
+            if(courses.get(n).options().size()>4) {//for each possible option
+                for(int i=0;i<courses.get(n).periods().size();i++) {//for each period the course appears in the schedule
 
-                    Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks().get(i),2);
-                    if(courses.get(n).code.equals("BI02007")) {
+                    Course temp = new Course(courses.get(n).code,courses.get(n).name, courses.get(n).discipline, courses.get(n).periods().get(i),courses.get(n).timeblocks().get(i),2);//create a temporary
+                    //course to hold courses that appear twice in the schedule, so that all possible options are filled
+                    if(courses.get(n).code.equals("BI02007")) {//hardcoded constraint for the only course that appears twice with a prereq
                         temp.addPrereq("BIO2001");
                     }
-                    for(int j:temp.options())
+                    for(int j:temp.options())//for each temporary course option
                     {
-                        if (sched1[j]==null) {
-                            Course[] sched2 = ArrayCopy(sched1);
-                            sched2[j] = temp;
+                        if (sched1[j]==null) {//if the array isnt filled
+                            Course[] sched2 = ArrayCopy(sched1);//copy the array
+                            sched2[j] = temp;//fill the schedule with the course 
                             bResult = bResult || loop(sched2, courses, n + 1); //?
                         }
                     }
@@ -106,7 +125,12 @@ public class Schedule {
         }
         return bResult;
     }
-
+/*
+ * ArrayCopy
+ * input Course[]
+ * return Course[]
+ * helper function to create a a copy of a scheduke
+ */
     private static Course[] ArrayCopy(Course [] sched) {
         Course[] newsched = new Course[16];
         for (int i = 0; i<16; i++) {
@@ -122,7 +146,12 @@ public class Schedule {
         }
         return newsched;
     }
-
+/*
+ * timeblockCheck
+ * input sched1: input a schedule to check if all timeblocks are valid
+ * return boolean: returns true if no clashes found in timetable
+ * 
+ */
     public static boolean timeblockCheck(List<Course>sched1) {
         for(int i = 0;i<sched1.size()-1;i+=2) {
             if(sched1.get(i).timeblocktwo.equals("XX")&&sched1.get(i+1).timeblocktwo.equals("XX")) {
@@ -144,7 +173,12 @@ public class Schedule {
         }
         return true;
     }
-
+    /*
+     * prereq
+     * input sched1: input a schedule to check if all timeblocks are valid
+     * return boolean: returns true if prereq after its course
+     * method to check if a prereq ever appears after the course it is a prereq for
+     */
     public static boolean prereqCheck(List<Course> sched1) {
         List<String> codes = new ArrayList<String>();//we don't have a way to get a course object from getPrereqs, so we have to hold course codes in an array to search for index of prereqs
         for(int i=0;i<sched1.size();i++) {//fill the codes with the course codes

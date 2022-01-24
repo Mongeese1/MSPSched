@@ -5,7 +5,7 @@ public class CourseList {
 
     static ArrayList <Course> courselist = new ArrayList<>();
 
-    public CourseList() {
+    public CourseList() {//Create the courselist class, containing all the courses available at MSP and their details
         Course C;
 
         //---BIOLOGY----------------------------------------------------------------------------------------------------
@@ -334,7 +334,12 @@ public class CourseList {
         C = new Course("HUM2051","Philosophical Ethics", "UCM", 4, "AG", 1);
         courselist.add(C);
     }
-
+/*
+ * select
+ * input course code
+ * return boolean
+ * function to mark a course as selected a course from the courselist
+ */
     public void select(String code) {
         for (Course C : courselist) {
             if (code.equals(C.code)) {
@@ -342,7 +347,12 @@ public class CourseList {
             }
         }
     }
-
+    /*
+     * deselect
+     * input course code
+     * return boolean
+     * function to mark a course as deselected a course from the courselist
+     */
     public void deselect(String code) {
         for ( Course C : courselist ) {
             if (code.equals(C.code)) {
@@ -350,7 +360,12 @@ public class CourseList {
             }
         }
     }
-
+    /*
+     * getSelected
+     * input null
+     * return arraylist of courses
+     * function to get all courses from the courselist with selected markers on them
+     */
     public ArrayList<Course> getSelected() {
         ArrayList <Course> selectedlist = new ArrayList<Course>();
         for( Course C : courselist) {
@@ -360,9 +375,9 @@ public class CourseList {
         }
         return selectedlist;
     }
-    //check needs to be added for CHE2001, BIO2001 and BIO2007
+ 
 
-    public static ArrayList<Course> getAll() {
+    public static ArrayList<Course> getAll() {//return the entire courselist
         return courselist;
     }
 
@@ -374,7 +389,9 @@ public class CourseList {
         }
         return false;
     }
-
+/*
+ * check functions to check which discipline a course belongs to and whether or not they fulfill certain criteria, such as prereqs, coreqs, LAS req, etc.
+ */
     private boolean checkMAT() {
         for( Course C : getSelected()) {
             if (C.discipline.equals("Math")) {

@@ -15,7 +15,7 @@ public class Course {
     public int periodtwo;
     public String timeblocktwo;
 
-    public Course(String code, String name, String discipline, int period, String timeblock, int frequency) {
+    public Course(String code, String name, String discipline, int period, String timeblock, int frequency) {//constructor for a course object, containing its name, period etc.
         this.code = code;
         this.name = name;
         this.discipline = discipline;
@@ -34,7 +34,8 @@ public class Course {
     public void addCoreq(String code) {
         coreqs.add(code);
     } //redundant
-    public List<Integer> options() {
+    public List<Integer> options() {//function which returns the options for where a course can be placed in a 1x16 array, the array goes period 1, then 2 , then 4  and so on
+    	//two courses next to eachother are in the same period
     	List<Integer> opt =new ArrayList<Integer>();
     	if(this.period==1||this.periodtwo ==1) {
     		opt.add(4);
@@ -67,7 +68,7 @@ public class Course {
     	}
 		return opt;
     	}
-    public List<Integer> periods(){
+    public List<Integer> periods(){//function to return a courses periods as an array object
     	List<Integer> periods = new ArrayList<Integer>();
     	if(this.periodtwo==0) {
     		periods.add(this.period);
@@ -78,7 +79,7 @@ public class Course {
     	}
     	return periods;
     }
-    public List<String> timeblocks(){
+    public List<String> timeblocks(){//return a courses timeblocks as an array object
     	List<String> timeblocks = new ArrayList<String>();
     	if(this.timeblocktwo.equals("XX")) {
     		timeblocks.add(this.timeblock);
@@ -90,7 +91,7 @@ public class Course {
     	return timeblocks;
     }
 
-    public void addPeriodTwo(int period, String timeblock) {
+    public void addPeriodTwo(int period, String timeblock) {//some courses appear twice, so this method updates a course objects period two manually to indicate that it may appear more than once
         this.periodtwo = period;
         this.timeblocktwo = timeblock;
     }
