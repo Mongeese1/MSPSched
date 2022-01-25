@@ -1,4 +1,4 @@
-
+package crs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -140,6 +140,7 @@ public class Main{
         javax.swing.SwingUtilities.invokeLater(() -> createGui(main.menu));
     }
 }
+
 
 
 
